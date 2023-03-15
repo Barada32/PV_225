@@ -38,6 +38,7 @@ public:
 	}
 	~ForwardList()
 	{
+		while (Head)pop_front();
 		cout << "LDestructor:\t" << this << endl;
 	}
 
@@ -52,7 +53,7 @@ public:
 		//3) Голову списка "переводим" на новый элемент:
 		Head = New;
 		*/
-		
+
 		Head = new Element(Data, Head);
 
 		size++;
@@ -61,13 +62,13 @@ public:
 	{
 		if (Head == nullptr)return push_front(Data);
 		//1) Создаем новый элемент:
-		Element* New = new Element(Data);
+		//Element* New = new Element(Data);
 		//2) Доходим до конца списка:
 		Element* Temp = Head;
 		while (Temp->pNext)
 			Temp = Temp->pNext;
 		//3) Добавляем элемент в конец списка:
-		Temp->pNext = New;
+		Temp->pNext = new Element(Data);
 		size++;
 	}
 	void insert(int Index, int Data)
@@ -76,18 +77,20 @@ public:
 		if (Index > size)return;
 
 		//1) Создаем новый элемент:
-		Element* New = new Element(Data);
+		//Element* New = new Element(Data);
 
 		//2) Доходим до нужного элемента
 		Element* Temp = Head;
 		for (int i = 0; i < Index - 1; i++)Temp = Temp->pNext;
 
 		//3) Вставляем новый элемент в список:
-		New->pNext = Temp->pNext;
-		Temp->pNext = New;
+		//New->pNext = Temp->pNext;
+		//Temp->pNext = New;
+		Temp->pNext = new Element(Data, Temp->pNext);
+
 		size++;
 	}
-	
+
 	//					Erasing Elements
 	void pop_front()
 	{
@@ -113,14 +116,17 @@ public:
 	//					Methods:
 	void print()const
 	{
-		Element* Temp = Head;	//Temp - это итератор
+		/*Element* Temp = Head;	//Temp - это итератор
 		//Итератор - это указатель, при помощи которого можно получить доступ
 		//к элементам структуры данных
 		while (Temp)
 		{
 			cout << Temp << tab << Temp->Data << tab << Temp->pNext << endl;
 			Temp = Temp->pNext;	//Переход на следующий элемент
-		}
+		}*/
+		for (Element* Temp = Head; Temp; Temp = Temp->pNext)
+			cout << Temp << tab << Temp->Data << tab << Temp->pNext << endl;
+
 		cout << "Количество элементов списка:" << size << endl;
 		cout << "Общее количество элементов: " << Element::count << endl;
 	}
@@ -146,7 +152,7 @@ void main()
 	cout << "Введите значение добавляемого элемента: "; cin >> value;
 	list.insert(index, value);
 	list.print();
-	
+
 	ForwardList list2;
 	list2.push_back(3);
 	list2.push_back(5);
