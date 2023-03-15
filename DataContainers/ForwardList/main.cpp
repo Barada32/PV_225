@@ -1,6 +1,9 @@
 ﻿//ForwardList
 #include<iostream>
 using namespace std;
+using std::cin;
+using std::cout;
+using std::endl;
 
 #define tab "\t"
 
@@ -21,20 +24,77 @@ public:
 		cout << "EDestructor:\t" << this << endl;
 	}
 	friend class ForwardList;
+	friend class Iterator;
 };
 
 int Element::count = 0;	//Инициализируем статическу переменную, объявленную в классе 'Element'
+
+class Iterator
+{
+	Element* Temp;
+public:
+	Iterator(Element* Temp = nullptr) :Temp(Temp)
+	{
+		cout << "ItConstructor:\t" << this << endl;
+	}
+	~Iterator()
+	{
+		cout << "ItDestructor:\t" << this << endl;
+	}
+
+	Iterator& operator++()
+	{
+		Temp = Temp->pNext;
+		return *this;
+	}
+
+	bool operator==(const Iterator& other)const
+	{
+		return this->Temp == other.Temp;
+	}
+	bool operator!=(const Iterator& other)const
+	{
+		return this->Temp != other.Temp;
+	}
+	int& operator*()
+	{
+		return Temp->Data;
+	}
+
+};
 
 class ForwardList	//Forward - односвязный, однонаправленный
 {
 	Element* Head;	//Голова списка - содержит указатель на нулевой элемент списка
 	int size;
 public:
+	Iterator begin()
+	{
+		return Head;
+	}
+	Iterator end()
+	{
+		return nullptr;
+	}
 	ForwardList()
 	{
 		Head = nullptr;	//Если список пуст, то его Голова указывает на 0
 		size = 0;
 		cout << "LConstructor:\t" << this << endl;
+	}
+	ForwardList(const std::initializer_list<int>& il) :ForwardList()
+	{
+		//il - initializer_list
+		//initializer_list - это контейнер.
+		//Контейнер - это объект, который организует хранение других объектов в памяти.
+		//Как и у любого другого контейнера, у initilizer_list есть методы begin() и end()
+		//begin() - возвращает итератор на начало контейнера.
+		//end()   - возвращает итератор на конец контейнера.
+		cout << typeid(il.begin()).name() << endl;
+		for (int const* it = il.begin(); it != il.end(); it++)
+		{
+			push_back(*it);
+		}
 	}
 	~ForwardList()
 	{
@@ -132,9 +192,14 @@ public:
 	}
 };
 
+//#define BASE_CHECK
+//#define RANGE_BASED_FOR_ARRAY
+#define HOME_WORK_1
+
 void main()
 {
 	setlocale(LC_ALL, "");
+#ifdef BASE_CHECK
 	int n;
 	cout << "Введите размер списка: "; cin >> n;
 	ForwardList list;
@@ -158,4 +223,39 @@ void main()
 	list2.push_back(5);
 	list2.push_back(8);
 	list2.print();
+#endif // BASE_CHECK
+
+#ifdef RANGE_BASED_FOR_ARRAY
+	int arr[] = { 3,5,8,13,21 };
+	/*for (int i = 0; i < sizeof(arr)/sizeof(int); i++)
+	{
+		cout << arr[i] << tab;
+	}
+	cout << endl;*/
+
+	//Range-based for
+	//https://legacy.cplusplus.com/doc/tutorial/control/#:~:text=equal%20to%2050.-,Range%2Dbased%20for%20loop,-The%20for%2Dloop
+	for (int i : arr)
+	{
+		cout << i << tab;
+	}
+	cout << endl;
+#endif // RANGE_BASED_FOR_ARRAY
+
+#ifdef HOME_WORK_1
+	ForwardList list = { 3, 5, 8, 13, 21 };
+	//list.print();
+	for (int i : list)
+	{
+		cout << i << tab;
+	}
+	cout << endl;
+
+	ForwardList list2 = { 34, 55, 89 };
+	for (int i : list2)cout << i << tab; cout << endl;
+
+	ForwardList list3 = list + list2;
+	for (int i : list3)cout << i << tab; cout << end; l
+#endif // HOME_WORK_1
+
 }
