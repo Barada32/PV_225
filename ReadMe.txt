@@ -10,6 +10,13 @@ https://github.com/AllonsiWho/Geometri/blob/master/ConsoleDrawing%20201507250937
 https://www.youtube.com/watch?v=18c3MTX0PK0&list=PLlrATfBNZ98dudnM48yfGUldqGD0S4FFb
 
 TODO:
+1. Проверочный код в секции HOME_WORK_1 должен заработать:
+	https://github.com/okovtun/PV_225/blob/e27ac0456e5ae4235e83725eac11cf455de28748/DataContainers/ForwardList/main.cpp#L245
+
+2. В классе ForwardList написать метод reverse(), 
+   который меняет порядок следования элементов на противоположный.
+
+DONE:
 В класс ForwardList добавить следующие методы:
 	void pop_front();	//удаляет элемент c начала списка	DONE
 	void pop_back();	//удаляет элемент c конца списка	DONE
