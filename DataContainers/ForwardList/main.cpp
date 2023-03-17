@@ -201,7 +201,7 @@ public:
 
 void main()
 {
-	setlocale(LC_ALL, "");
+	setlocale (LC_ALL, "Rus");
 #ifdef BASE_CHECK
 	int n;
 	cout << "Введите размер списка: "; cin >> n;
