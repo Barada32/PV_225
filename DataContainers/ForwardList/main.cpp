@@ -16,30 +16,77 @@ public:
 	Element(int Data, Element* pNext = nullptr) :Data(Data), pNext(pNext)
 	{
 		count++;
+#ifdef DEBUG
 		cout << "EConstructor:\t" << this << endl;
+#endif // DEBUG
+
 	}
 	~Element()
 	{
 		count--;
+#ifdef DEBUG
 		cout << "EDestructor:\t" << this << endl;
+#endif // DEBUG
+
 	}
 	friend class ForwardList;
 	friend class Iterator;
+	friend class ConstIterator;
 };
 
 int Element::count = 0;	//Инициализируем статическу переменную, объявленную в классе 'Element'
 
+class ConstIterator
+{
+	Element* Temp;
+public:
+	ConstIterator(Element* Temp = nullptr) :Temp(Temp)
+	{
+#ifdef DEBUG
+		cout << "ItConstructor:\t" << this << endl;
+#endif // DEBUG
+	}
+	~ConstIterator()
+	{
+#ifdef DEBUG
+		cout << "ItDestructor:\t" << this << endl;
+#endif // DEBUG
+	}
+
+	ConstIterator& operator++()
+	{
+		Temp = Temp->pNext;
+		return *this;
+	}
+
+	bool operator==(const ConstIterator& other)const
+	{
+		return this->Temp == other.Temp;
+	}
+	bool operator!=(const ConstIterator& other)const
+	{
+		return this->Temp != other.Temp;
+	}
+	const int& operator*()const
+	{
+		return Temp->Data;
+	}
+};
 class Iterator
 {
 	Element* Temp;
 public:
 	Iterator(Element* Temp = nullptr) :Temp(Temp)
 	{
+#ifdef DEBUG
 		cout << "ItConstructor:\t" << this << endl;
+#endif // DEBUG
 	}
 	~Iterator()
 	{
+#ifdef DEBUG
 		cout << "ItDestructor:\t" << this << endl;
+#endif // DEBUG
 	}
 
 	Iterator& operator++()
@@ -60,7 +107,6 @@ public:
 	{
 		return Temp->Data;
 	}
-
 };
 
 class ForwardList	//Forward - односвязный, однонаправленный
@@ -68,19 +114,32 @@ class ForwardList	//Forward - односвязный, однонаправлен
 	Element* Head;	//Голова списка - содержит указатель на нулевой элемент списка
 	int size;
 public:
+	ConstIterator cbegin()const
+	{
+		return Head;
+	}
 	Iterator begin()
 	{
 		return Head;
+	}
+
+	ConstIterator cend()const
+	{
+		return nullptr;
 	}
 	Iterator end()
 	{
 		return nullptr;
 	}
+
 	ForwardList()
 	{
 		Head = nullptr;	//Если список пуст, то его Голова указывает на 0
 		size = 0;
+#ifdef DEBUG
 		cout << "LConstructor:\t" << this << endl;
+#endif // DEBUG
+
 	}
 	ForwardList(const std::initializer_list<int>& il) :ForwardList()
 	{
@@ -96,10 +155,19 @@ public:
 			push_back(*it);
 		}
 	}
+	ForwardList(const ForwardList& other)
+	{
+		for (Element* Temp = other.Head; Temp; Temp = Temp->pNext)
+			push_front(Temp->Data);
+		reverse();
+		cout << "CopyConstructor:" << this << endl;
+	}
 	~ForwardList()
 	{
 		while (Head)pop_front();
+#ifdef DEBUG
 		cout << "LDestructor:\t" << this << endl;
+#endif // DEBUG
 	}
 
 	//					Adding elements:
@@ -174,6 +242,17 @@ public:
 	}
 
 	//					Methods:
+	void reverse()
+	{
+		ForwardList buffer;
+		while (Head)
+		{
+			buffer.push_front(Head->Data);	//Начальный элемент добавляет в начало буфера
+			pop_front();	//удаляем начальный элемент из исходного списка
+		}
+		Head = buffer.Head;
+		buffer.Head = nullptr;
+	}
 	void print()const
 	{
 		/*Element* Temp = Head;	//Temp - это итератор
@@ -192,10 +271,19 @@ public:
 	}
 };
 
+ForwardList operator+(const ForwardList& left, const ForwardList& right)
+{
+	ForwardList cat;
+	for (ConstIterator it = left.cbegin(); it != left.cend(); ++it)	cat.push_back((*it)*=10);
+	for (ConstIterator it = right.cbegin(); it != right.cend(); ++it)	cat.push_back(*it);
+	return cat;
+}
+
 //#define BASE_CHECK
 //#define RANGE_BASED_FOR_ARRAY
-#define RANGE_BASED_FOR_LIST
-//#define HOME_WORK_1
+//#define RANGE_BASED_FOR_LIST
+#define HOME_WORK_1
+//#define PREFORMANCE_CHECK
 
 void main()
 {
@@ -262,7 +350,23 @@ void main()
 	for (int i : list2)cout << i << tab; cout << endl;
 
 	ForwardList list3 = list + list2;
-	for (int i : list3)cout << i << tab; cout << end; l
+	for (int i : list3)cout << i << tab; cout << endl;
+
+	for (int i : list)cout << i << tab; cout << endl;
 #endif // HOME_WORK_1
+
+#ifdef PREFORMANCE_CHECK
+	int n;
+	cout << "Введите размер списка: "; cin >> n;
+	ForwardList list;
+	for (int i = 0; i < n; i++)
+	{
+		list.push_front(rand() % 100);
+	}
+	cout << "Список заполнен" << endl;
+	ForwardList list2 = list;
+	//for (int i : list)cout << i << tab; cout << endl;
+	//for (int i : list2)cout << i << tab; cout << endl;  
+#endif // PREFORMANCE_CHECK
 
 }

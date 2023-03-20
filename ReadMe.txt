@@ -9,10 +9,18 @@ https://github.com/AllonsiWho/Geometri/blob/master/ConsoleDrawing%20201507250937
 
 https://www.youtube.com/watch?v=18c3MTX0PK0&list=PLlrATfBNZ98dudnM48yfGUldqGD0S4FFb
 
+Tasks:
+https://leetcode.com/
+codewars.com
+
+https://github.com/okovtun/PV_224
+https://github.com/okovtun/SPD_121
+https://github.com/okovtun/OOPAstrakhan
+
+
 TODO:
 1. Проверочный код в секции HOME_WORK_1 должен заработать:
 	https://github.com/okovtun/PV_225/blob/e27ac0456e5ae4235e83725eac11cf455de28748/DataContainers/ForwardList/main.cpp#L245
-
 2. В классе ForwardList написать метод reverse(), 
    который меняет порядок следования элементов на противоположный.
 
