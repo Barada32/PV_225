@@ -17,8 +17,11 @@ https://github.com/okovtun/PV_224
 https://github.com/okovtun/SPD_121
 https://github.com/okovtun/OOPAstrakhan
 
-
 TODO:
+1. Написать методы insert() и erase();
+2. Оптимизировать методы добавления элементов;
+
+DONE:
 1. Проверочный код в секции HOME_WORK_1 должен заработать:
 	https://github.com/okovtun/PV_225/blob/e27ac0456e5ae4235e83725eac11cf455de28748/DataContainers/ForwardList/main.cpp#L245
 2. В классе ForwardList написать метод reverse(), 
