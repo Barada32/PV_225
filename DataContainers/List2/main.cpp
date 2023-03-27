@@ -127,7 +127,6 @@ public:
 		{
 			return Temp->Data;
 		}
-
 	};
 	Iterator begin()
 	{
@@ -276,6 +275,7 @@ void reverse_print(const List& list)
 {
 	for (List::ReverseIterator rit = list.rbegin(); rit != list.rend(); ++rit)
 	{
+		*rit *= 10;
 		cout << *rit << tab;
 	}
 	cout << endl;
@@ -307,14 +307,15 @@ void main()
 	list.reverse_print();
 #endif // BASE_CHECK
 
-	List list = { 3,5,8,13,21 };
+	List list = { 3, 5, 8, 13, 21 };
+
 	//list.print();
 	/*for (int i : list)
 	{
 		cout << i << tab;
 	}
 	cout << endl;*/
-	
+
 	print(list);
 	reverse_print(list);
 }
