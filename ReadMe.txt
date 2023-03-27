@@ -18,6 +18,9 @@ https://github.com/okovtun/SPD_121
 https://github.com/okovtun/OOPAstrakhan
 
 TODO:
+От ветки 'TemplatedList2' создать ветку 'SeparatedList2' и в ней разделить класс 'List' на файлы.
+
+DONE:
 1. Написать методы insert() и erase();
 2. Оптимизировать методы добавления элементов;	DONE
 3. Функции print() и reverse_print() должны заработать;
