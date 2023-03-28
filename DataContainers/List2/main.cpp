@@ -1,4 +1,4 @@
-#include<iostream>
+ï»¿#include<iostream>
 using namespace std;
 
 #define tab "\t"
@@ -267,11 +267,11 @@ public:
 			Head = Tail = nullptr;
 			return;
 		}
-		//1) Èñêëþ÷àåì ýëåìåíò èç ñïèñêà:
+		//1) Ð˜ÑÐºÐ»ÑŽÑ‡Ð°ÐµÐ¼ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚ Ð¸Ð· ÑÐ¿Ð¸ÑÐºÐ°:
 		Head = Head->pNext;
-		//2) Óäàëÿåì ýëåìåíò èç ïàìÿòè:
+		//2) Ð£Ð´Ð°Ð»ÑÐµÐ¼ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚ Ð¸Ð· Ð¿Ð°Ð¼ÑÑ‚Ð¸:
 		delete Head->pPrev;
-		//3) Îáíóëÿåì àäðåñ óäàëåííîãî ýëåìåíòà:
+		//3) ÐžÐ±Ð½ÑƒÐ»ÑÐµÐ¼ Ð°Ð´Ñ€ÐµÑ ÑƒÐ´Ð°Ð»ÐµÐ½Ð½Ð¾Ð³Ð¾ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð°:
 		Head->pPrev = nullptr;
 
 		size--;
@@ -292,13 +292,13 @@ public:
 		{
 			cout << Temp->pPrev << tab << Temp << tab << Temp->Data << tab << Temp->pNext << endl;
 		}
-		cout << "Êîëè÷åñòâî ýëåìåíòîâ ñïèñêà: " << size << endl;
+		cout << "ÐšÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð¾Ð² ÑÐ¿Ð¸ÑÐºÐ°: " << size << endl;
 	}
 	void reverse_print()const
 	{
 		for (Element* Temp = Tail; Temp; Temp = Temp->pPrev)
 			cout << Temp->pPrev << tab << Temp << tab << Temp->Data << tab << Temp->pNext << endl;
-		cout << "Êîëè÷åñòâî ýëåìåíòîâ ñïèñêà: " << size << endl;
+		cout << "ÐšÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð¾Ð² ÑÐ¿Ð¸ÑÐºÐ°: " << size << endl;
 	}
 };
 
@@ -328,7 +328,7 @@ void main()
 
 #ifdef BASE_CHECK
 	int n;
-	cout << "Ââåäèòå ðàçìåð ñïèñêà: "; cin >> n;
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ€Ð°Ð·Ð¼ÐµÑ€ ÑÐ¿Ð¸ÑÐºÐ°: "; cin >> n;
 	List list;
 	for (int i = 0; i < n; i++)
 	{
@@ -339,8 +339,8 @@ void main()
 
 	int index;
 	int value;
-	cout << "Ââåäèòå èíäåêñ äîáàâëÿåìîãî ýëåìåíòà: "; cin >> index;
-	cout << "Ââåäèòå çíà÷åíèå äîáàâëÿåìîãî ýëåìåíòà: "; cin >> value;
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¸Ð½Ð´ÐµÐºÑ Ð´Ð¾Ð±Ð°Ð²Ð»ÑÐµÐ¼Ð¾Ð³Ð¾ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð°: "; cin >> index;
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ Ð´Ð¾Ð±Ð°Ð²Ð»ÑÐµÐ¼Ð¾Ð³Ð¾ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð°: "; cin >> value;
 	list.insert(index, value);
 	list.print();
 	list.reverse_print();
