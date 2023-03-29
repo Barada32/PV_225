@@ -18,6 +18,10 @@ https://github.com/okovtun/SPD_121
 https://github.com/okovtun/OOPAstrakhan
 
 TODO:
+1. Выяснить, почему в Дереве не появляются элементы;
+2. В классе Tree написать метод print(), который выводит дерево на экран;
+
+DONE:
 От ветки 'TemplatedList2' создать ветку 'SeparatedList2' и в ней разделить класс 'List' на файлы.
 
 DONE:
