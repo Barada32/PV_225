@@ -18,6 +18,19 @@ https://github.com/okovtun/SPD_121
 https://github.com/okovtun/OOPAstrakhan
 
 TODO:
+	int minValue();	DONE
+	int maxValue();	DONE
+	int Count();	DONE
+	int Sum();		DONE
+	int Avg();		DONE
+	int Depth();	//возвращает глубину дерева
+	void Clear();	//Удаляет все элементы из Бинарного дерева
+	void Erase();	//удаляет из дерева заданное значение
+
+	Обеспечить вызов методов без неаобходимости пердавать в них корень дерева
+		tree.print(tree.GetRoot()) => tree.print();
+
+DONE:
 1. Выяснить, почему в Дереве не появляются элементы;
 2. В классе Tree написать метод print(), который выводит дерево на экран;
 
