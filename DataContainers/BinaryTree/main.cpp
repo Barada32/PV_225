@@ -1,6 +1,9 @@
-#include<iostream>
+ï»¿#include<iostream>
 #include<ctime>
+#include<chrono>
 using namespace std;
+
+#define delimiter "\n-----------------------------------------------\n"
 
 class Tree
 {
@@ -116,26 +119,75 @@ void main()
 {
 	setlocale(LC_ALL, "");
 	int n = 100000;
-	cout << "Ââåäèòå ðàçìåð äåðåâà: "; cin >> n;
+	cout << typeid(std::chrono::steady_clock::now()).name() << endl;
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ€Ð°Ð·Ð¼ÐµÑ€ Ð´ÐµÑ€ÐµÐ²Ð°: "; cin >> n;
 	Tree tree;
+	///////////////////////		Time:		///////////////////////
+	std::chrono::steady_clock::time_point ch_start = std::chrono::steady_clock::now();
+	clock_t c_start = clock();
+	static time_t t_start = time(NULL);
+	//-------------------------------------------------------------
 	for (int i = 0; i < n; i++)
 	{
 		tree.insert(rand() % 100, tree.getRoot());
 	}
-	tree.print(tree.getRoot());
+	///////////////////////		Time:		///////////////////////
+	std::chrono::steady_clock::time_point ch_end = std::chrono::steady_clock::now();
+	std::chrono::duration<double> delta = ch_end - ch_start;
+	clock_t c_end = clock();
+	static time_t t_end = time(NULL);
+	cout << delimiter << endl;
+	cout << "elapsed time chrono:  " << delta.count() << endl;
+	cout << "elapsed time time():  " << t_end - t_start << endl;
+	cout << "elapsed time clock(): " << double(c_end - c_start) / CLOCKS_PER_SEC << endl;
+	cout << delimiter << endl;
+	//-------------------------------------------------------------
+	//tree.print(tree.getRoot());
 	cout << endl;
-	cout << "Ìèíèìàëüíîå çíà÷åíèå â äåðåâå: " << tree.minValue(tree.getRoot()) << endl;
-	cout << "Ìàêñèìàëüíîå çíà÷åíèå â äåðåâå: " << tree.maxValue(tree.getRoot()) << endl;
-	//clock_t start = clock();
-	cout << "Êîëè÷åñòâî ýëåìåíòîâ äåðåâà: " << tree.Count(tree.getRoot()) << endl;
-	cout << "Ñóììà ýëåìåíòîâ äåðåâà: " << tree.Sum(tree.getRoot()) << endl;
-	cout << "Ñðåäíåå-àðèôìåòè÷åñêîå ýëåìåíòîâ äåðåâà: " << tree.Avg() << endl;
+	cout << "ÐœÐ¸Ð½Ð¸Ð¼Ð°Ð»ÑŒÐ½Ð¾Ðµ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ Ð² Ð´ÐµÑ€ÐµÐ²Ðµ: " << tree.minValue(tree.getRoot()) << endl;
+	cout << "ÐœÐ°ÐºÑÐ¸Ð¼Ð°Ð»ÑŒÐ½Ð¾Ðµ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ Ð² Ð´ÐµÑ€ÐµÐ²Ðµ: " << tree.maxValue(tree.getRoot()) << endl;
+	system("PAUSE");
+	//////////////////////////////////////////////////////////////////////////////////////////
+	ch_start = std::chrono::steady_clock::now();
+	t_start = time(NULL);
+	c_start = clock();
+	cout << "ÐšÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð¾Ð² Ð´ÐµÑ€ÐµÐ²Ð°: " << tree.Count(tree.getRoot()) << endl;
+	ch_end = std::chrono::steady_clock::now();
+	t_end = time(NULL);
+	c_end = clock();
+	cout << delimiter << endl;
+	delta = ch_end - ch_start;
+	cout << "elapsed time chrono:  " << delta.count() << endl;
+	cout << "elapsed time time():  " << t_end - t_start << endl;
+	cout << "elapsed time clock(): " << double(c_end - c_start) / CLOCKS_PER_SEC << endl;
+	cout << delimiter << endl;
+	//////////////////////////////////////////////////////////////////////////////////////////
+	
+	//////////////////////////////////////////////////////////////////////////////////////////
+	ch_start = std::chrono::steady_clock::now();
+	t_start = time(NULL);
+	c_start = clock();
+	cout << "Ð¡ÑƒÐ¼Ð¼Ð° ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð¾Ð² Ð´ÐµÑ€ÐµÐ²Ð°: " << tree.Sum(tree.getRoot()) << endl;
+	ch_end = std::chrono::steady_clock::now();
+	t_end = time(NULL);
+	c_end = clock();
+	cout << delimiter << endl;
+	delta = ch_end - ch_start;
+	cout << "elapsed time chrono:  " << delta.count() << endl;
+	cout << "elapsed time time():  " << t_end - t_start << endl;
+	cout << "elapsed time clock(): " << double(c_end - c_start) / CLOCKS_PER_SEC << endl;
+	cout << delimiter << endl;
+	//////////////////////////////////////////////////////////////////////////////////////////
+	
+	
+	cout << "Ð¡ÑƒÐ¼Ð¼Ð° ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð¾Ð² Ð´ÐµÑ€ÐµÐ²Ð°: " << tree.Sum(tree.getRoot()) << endl;
+	cout << "Ð¡Ñ€ÐµÐ´Ð½ÐµÐµ-Ð°Ñ€Ð¸Ñ„Ð¼ÐµÑ‚Ð¸Ñ‡ÐµÑÐºÐ¾Ðµ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð¾Ð² Ð´ÐµÑ€ÐµÐ²Ð°: " << tree.Avg() << endl;
 	//system("PAUSE");
-	/*clock_t end = clock();
-	cout << "Âðåìÿ ïîäñ÷åòà: " << difftime(end, start)/CLOCKS_PER_SEC << " c" << endl;
-	cout << start << endl;
-	cout << end << endl;
-	cout << "Âðåìÿ ïîäñ÷åòà: " << double(end - start)/CLOCKS_PER_SEC << endl;*/
+	//cout << "Ð’Ñ€ÐµÐ¼Ñ Ð¿Ð¾Ð´ÑÑ‡ÐµÑ‚Ð°: " << difftime(t_end, t_start) << " c" << endl;
+	//cout << "Ð’Ñ€ÐµÐ¼Ñ Ð¿Ð¾Ð´ÑÑ‡ÐµÑ‚Ð°: " << t_end - t_start << " c" << endl;
+	//cout << start << endl;
+	//cout << end << endl;
+	//cout << "Ð’Ñ€ÐµÐ¼Ñ Ð¿Ð¾Ð´ÑÑ‡ÐµÑ‚Ð°: " << double(end - start) / CLOCKS_PER_SEC << endl;
 
 	UniqueTree tree2;
 	for (int i = 0; i < n; i++)
@@ -146,11 +198,11 @@ void main()
 	{
 		tree2.insert(rand() % 100, tree2.getRoot());
 	}*/
-	tree2.print(tree2.getRoot());
+	//tree2.print(tree2.getRoot());
 	cout << endl;
-	cout << "Ìèíèìàëüíîå çíà÷åíèå â äåðåâå: " << tree2.minValue(tree2.getRoot()) << endl;
-	cout << "Ìàêñèìàëüíîå çíà÷åíèå â äåðåâå: " << tree2.maxValue(tree2.getRoot()) << endl;
-	cout << "Êîëè÷åñòâî ýëåìåíòîâ äåðåâà: " << tree2.Count(tree2.getRoot()) << endl;
-	cout << "Ñóììà ýëåìåíòîâ äåðåâà: " << tree2.Sum(tree2.getRoot()) << endl;
-	cout << "Ñðåäíåå-àðèôìåòè÷åñêîå ýëåìåíòîâ äåðåâà: " << tree2.Avg() << endl;
+	cout << "ÐœÐ¸Ð½Ð¸Ð¼Ð°Ð»ÑŒÐ½Ð¾Ðµ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ Ð² Ð´ÐµÑ€ÐµÐ²Ðµ: " << tree2.minValue(tree2.getRoot()) << endl;
+	cout << "ÐœÐ°ÐºÑÐ¸Ð¼Ð°Ð»ÑŒÐ½Ð¾Ðµ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ Ð² Ð´ÐµÑ€ÐµÐ²Ðµ: " << tree2.maxValue(tree2.getRoot()) << endl;
+	cout << "ÐšÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð¾Ð² Ð´ÐµÑ€ÐµÐ²Ð°: " << tree2.Count(tree2.getRoot()) << endl;
+	cout << "Ð¡ÑƒÐ¼Ð¼Ð° ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð¾Ð² Ð´ÐµÑ€ÐµÐ²Ð°: " << tree2.Sum(tree2.getRoot()) << endl;
+	cout << "Ð¡Ñ€ÐµÐ´Ð½ÐµÐµ-Ð°Ñ€Ð¸Ñ„Ð¼ÐµÑ‚Ð¸Ñ‡ÐµÑÐºÐ¾Ðµ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð¾Ð² Ð´ÐµÑ€ÐµÐ²Ð°: " << tree2.Avg() << endl;
 }
