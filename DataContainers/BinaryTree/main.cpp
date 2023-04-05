@@ -197,10 +197,10 @@ public:
 	}
 };
 
-//#define BASE_CHECK
-//#define TIME_MESUREMENT
+#define BASE_CHECK
+#define TIME_MESUREMENT
 
-#define DEPTH_CHECK
+//#define DEPTH_CHECK
 
 void main()
 {

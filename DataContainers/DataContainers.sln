@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.1082
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DataContainers", "DataContainers\DataContainers.vcxproj", "{F2F8DD92-BF24-42EA-8787-FDF56704C529}"
 EndProject
@@ -14,6 +14,8 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HomeWork", "HomeWork\HomeWork.vcxproj", "{4DB36F06-BE30-48B2-9923-20FC5B4E1AE0}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Fib", "Fib\Fib.vcxproj", "{6AAAEA97-09FE-4FDE-AAE6-6B4BFF30175F}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HAND_WRITING", "HAND_WRITING\HAND_WRITING.vcxproj", "{063A9A42-2D34-4935-B030-10C30CF6FAF9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -71,6 +73,14 @@ Global
 		{6AAAEA97-09FE-4FDE-AAE6-6B4BFF30175F}.Release|x64.Build.0 = Release|x64
 		{6AAAEA97-09FE-4FDE-AAE6-6B4BFF30175F}.Release|x86.ActiveCfg = Release|Win32
 		{6AAAEA97-09FE-4FDE-AAE6-6B4BFF30175F}.Release|x86.Build.0 = Release|Win32
+		{063A9A42-2D34-4935-B030-10C30CF6FAF9}.Debug|x64.ActiveCfg = Debug|x64
+		{063A9A42-2D34-4935-B030-10C30CF6FAF9}.Debug|x64.Build.0 = Debug|x64
+		{063A9A42-2D34-4935-B030-10C30CF6FAF9}.Debug|x86.ActiveCfg = Debug|Win32
+		{063A9A42-2D34-4935-B030-10C30CF6FAF9}.Debug|x86.Build.0 = Debug|Win32
+		{063A9A42-2D34-4935-B030-10C30CF6FAF9}.Release|x64.ActiveCfg = Release|x64
+		{063A9A42-2D34-4935-B030-10C30CF6FAF9}.Release|x64.Build.0 = Release|x64
+		{063A9A42-2D34-4935-B030-10C30CF6FAF9}.Release|x86.ActiveCfg = Release|Win32
+		{063A9A42-2D34-4935-B030-10C30CF6FAF9}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
