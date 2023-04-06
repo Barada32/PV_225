@@ -13,11 +13,18 @@ Tasks:
 https://leetcode.com/
 codewars.com
 
+STL:
+https://legacy.cplusplus.com/reference/stl/
+
+TODO:
+1. Добавить в Вектор значение по индексу;
+2. удалить из Ветора значение по индексу;
+
 https://github.com/okovtun/PV_224
 https://github.com/okovtun/SPD_121
 https://github.com/okovtun/OOPAstrakhan
 
-TODO:
+DONE:
 	int minValue();	DONE
 	int maxValue();	DONE
 	int Count();	DONE
