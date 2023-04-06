@@ -3,6 +3,7 @@
 #include<vector>
 #include<deque>
 #include<list>
+#include<iterator>
 using std::cin;
 using std::cout;
 using std::endl;
@@ -22,7 +23,7 @@ template<typename T>void vector_properties(const std::vector<T>& vec)
 //#define STL_ARRAY
 //#define STL_VECTOR
 //#define STL_DEQUE
-#define STL_LIST
+//#define STL_LIST
 
 void main()
 {
@@ -116,11 +117,26 @@ void main()
 		cout << list[i] << tab;
 	}
 	cout << endl;*/
-	for (std::list<int>::iterator it = list.begin(); it != list.end(); it++)
+	for (std::list<int>::iterator it = list.begin(); it != list.end(); ++it)
 	{
 		cout << *it << tab;
 	}
 	cout << endl;
+	for (std::list<int>::reverse_iterator rit = list.rbegin(); rit != list.rend(); ++rit)
+	{
+		cout << *rit << tab;
+	}
+	cout << endl;
+
+	int index;
+	int value;
+	cout << "Введите индекс добавляемого элемента: "; cin >> index;
+	cout << "Введите значение добавляемого элемента: "; cin >> value;
+	std::list<int>::iterator position = list.begin();
+	//for (int i = 0; i < index; i++)++position;
+	std::advance(position, index);
+	list.insert(position, value);
+	for (int i : list)cout << i << tab; cout << endl;
 #endif // STL_LIST
 
 }
