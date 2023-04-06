@@ -68,6 +68,16 @@ public:
 		if (Root == nullptr)return 0;
 		else return count(Root->pLeft) + count(Root->pRight) + 1;
 	}
+
+	int Sum(Element* Root)
+	{
+		if (Root == nullptr)return 0;
+		else return Sum(Root->pLeft) + Sum(Root->pRight) + Root->Data;
+	}
+	double Avg()
+	{
+		return(double)Sum(Root) / count(Root);
+	}
 	void print(Element* Root)const
 	{
 		if (Root == nullptr)return;
@@ -115,18 +125,22 @@ void main()
 	cout << "MinValue Tree: " << tree.minValue(tree.getRoot()) << endl;
 	cout << "MaxValue Tree: " << tree.maxValue(tree.getRoot()) << endl;
 	cout << "count Tree: " << tree.count(tree.getRoot()) << endl;
+	cout << "Sum Tree: " << tree.Sum(tree.getRoot()) << endl;
+	cout << "Avg Tree: " << tree.Avg() << endl;
 	UniqeTree tree2;
-	/*for (int i = 0; i < n; i++)
-	{
-		tree2.insert(rand() % 100, tree2.getRoot());
-	}*/
-	while (tree2.count(tree2.getRoot()) < n)
+	for (int i = 0; i < n; i++)
 	{
 		tree2.insert(rand() % 100, tree2.getRoot());
 	}
+	/*while (tree2.count(tree2.getRoot()) < n)
+	{
+		tree2.insert(rand() % 100, tree2.getRoot());
+	}*/
 	tree2.print(tree2.getRoot());
 	cout << endl;
 	cout << "MinValue Tree: " << tree2.minValue(tree2.getRoot()) << endl;
 	cout << "MaxValue Tree: " << tree2.maxValue(tree2.getRoot()) << endl;
 	cout << "count Tree: " << tree2.count(tree2.getRoot()) << endl;
+	cout << "Sum Tree: " << tree2.Sum(tree2.getRoot()) << endl;
+	cout << "Avg Tree: " << tree2.Avg() << endl;
 }
