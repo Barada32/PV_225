@@ -14,11 +14,17 @@ class List
 		Element(int Data, Element* pNext = nullptr, Element* pPrev = nullptr)
 			:Data(Data), pNext(pNext), pPrev(pPrev)
 		{
+#ifdef DEBUG
 			cout << "EConstructor:\t" << this << endl;
+#endif // DEBUG
+
 		}
 		~Element()
 		{
+#ifdef DEBUG
 			cout << "EDestructor:\t" << this << endl;
+#endif // DEBUG
+
 		}
 		friend class List;
 	}*Head, *Tail;
@@ -182,12 +188,19 @@ public:
 	{
 		return nullptr;
 	}
-
+	unsigned int get_size()const
+	{
+		return size;
+	}
 	List()
 	{
 		Head = Tail = nullptr;
 		size = 0;
 		cout << "LConstructor:\t" << this << endl;
+	}
+	List(int size) :List()
+	{
+		while (size--)push_back(0);
 	}
 	List(const std::initializer_list<int>& il) :List()
 	{
@@ -201,6 +214,14 @@ public:
 		//while (Head)pop_front();
 		while (Tail)pop_back();
 		cout << "LDestructor:\t" << this << endl;
+	}
+
+	//					Operators:
+	int& operator[](int index)
+	{
+		Element* Temp = Head;
+		for (int i = 0; i < index; i++)Temp = Temp->pNext;
+		return Temp->Data;
 	}
 
 	//					Adding elements:
@@ -321,6 +342,7 @@ void reverse_print(const List& list)
 }
 
 //#define BASE_CHECK
+//#define ITERATORS_CHECK
 
 void main()
 {
@@ -346,6 +368,7 @@ void main()
 	list.reverse_print();
 #endif // BASE_CHECK
 
+#ifdef ITERATORS_CHECK
 	List list = { 3, 5, 8, 13, 21 };
 
 	//list.print();
@@ -360,4 +383,13 @@ void main()
 	print(list);
 	for (List::ReverseIterator rit = list.rbegin(); rit != list.rend(); rit++)*rit /= 10;
 	reverse_print(list);
+#endif // ITERATORS_CHECK
+
+	List list(50000);
+	cout << "Список создан" << endl;
+	for (int i = 0; i < list.get_size(); i++)
+	{
+		list[i] = rand();
+	}
+	cout << "Список заполнен" << endl;
 }
